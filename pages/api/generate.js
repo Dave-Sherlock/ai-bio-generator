@@ -4,12 +4,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Simulate AI bio generation
     const sampleBio = "Passionate about AI and tech innovation. Experienced developer and lifelong learner.";
-
-    // Respond with generated bio
     res.status(200).json({ bio: sampleBio });
   } catch (error) {
+    console.error("API error:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
