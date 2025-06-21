@@ -1,4 +1,5 @@
- "name": "ai-bio-generator",
+{
+  "name": "ai-bio-generator",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
@@ -10,3 +11,5 @@
     "react": "latest",
     "react-dom": "latest",
     "openai": "latest"
+  }
+}
