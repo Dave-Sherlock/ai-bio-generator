@@ -8,6 +8,14 @@ export default function Home() {
   const [error, setError] = useState("");
 
   async function generateBio() {
+    const trimmedName = name.trim();
+    const trimmedRole = role.trim();
+
+    if (!trimmedName || !trimmedRole) {
+      setError("Name and role are required.");
+      return;
+    }
+
     setLoading(true);
     setError("");
     setBio("");
@@ -16,7 +24,7 @@ export default function Home() {
       const response = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, role }),
+        body: JSON.stringify({ name: trimmedName, role: trimmedRole }),
       });
 
       const data = await response.json();
