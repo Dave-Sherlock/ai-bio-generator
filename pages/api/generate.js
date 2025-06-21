@@ -9,7 +9,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  const { name, role } = req.body;
+  if (!process.env.OPENAI_API_KEY) {
+    console.error("OPENAI_API_KEY not configured");
+    return res.status(500).json({ error: "Server configuration error." });
+  }
+
+  const name = (req.body.name || "").trim();
+  const role = (req.body.role || "").trim();
 
   if (!name || !role) {
     return res.status(400).json({ error: "Name and role are required." });
